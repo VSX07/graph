@@ -1,0 +1,18 @@
+class Solution {
+public:
+   void dfs(vector<vector<int>> & image,int i,int j,int orgcol,int newcol){
+       if(i<0 or j<0 or i>=image.size() or j>=image[0].size() or image[i][j]==newcol or image[i][j]!=orgcol){
+        return;
+       }
+
+       image[i][j]=newcol;
+       dfs(image,i-1,j,orgcol,newcol);//top
+       dfs(image,i,j-1,orgcol,newcol);//left
+       dfs(image,i+1,j,orgcol,newcol);//down
+        dfs(image,i,j+1,orgcol,newcol);//right
+   }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+          dfs(image,sr,sc,image[sr][sc],color);
+          return image;
+    }
+};
